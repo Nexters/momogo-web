@@ -372,16 +372,6 @@ button:focus-visible {
   min-width: 440px;
 }
 
-.notice {
-  margin: 24px 0;
-  padding: 18px 20px;
-  border-radius: var(--radius-md);
-  background: #fff8e5;
-  border: 1px solid var(--primary-400);
-  font-size: 15px;
-  line-height: 1.7;
-}
-
 /* 푸터 */
 .site-footer {
   padding: 32px 0 48px;

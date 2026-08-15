@@ -1,17 +1,14 @@
+import { useState } from 'react'
 import Layout from '../Layout'
 
-/**
- * 앱 소개 스크린샷.
- * public/assets/screenshots/ 에 파일을 넣고 여기에 한 줄씩 추가하면 렌더됩니다.
- * 비어 있으면 섹션 자체가 표시되지 않습니다.
- */
-const SHOTS: { src: string; caption: string }[] = [
-  // { src: '/assets/screenshots/01-today.png', caption: '오늘의 한 장' },
-  // { src: '/assets/screenshots/02-group.png', caption: '초대한 사람들끼리' },
-  // { src: '/assets/screenshots/03-react.png', caption: '가볍게 반응' },
-]
-
 export default function Home() {
+  const [posted, setPosted] = useState(false)
+  const today = new Date().toLocaleDateString('ko-KR', {
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+  })
+
   return (
     <Layout title="모모고 — 오늘 한 장, 우리끼리">
       <main>
@@ -60,19 +57,44 @@ export default function Home() {
           </article>
         </section>
 
-        {SHOTS.length > 0 && (
-          <section className="shots">
-            <h2>이렇게 생겼습니다</h2>
-            <ul className="shots-track">
-              {SHOTS.map((shot) => (
-                <li key={shot.src}>
-                  <img src={shot.src} alt={shot.caption} loading="lazy" />
-                  <span>{shot.caption}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
+        <section className="demo wrap">
+          <h2>직접 한 장 올려보세요</h2>
+          <p className="demo-sub">
+            올리고 나면 오늘은 끝입니다. 그래서 더 신중해집니다.
+          </p>
+
+          <div className="demo-card">
+            <span className="demo-date">{today}</span>
+            <button
+              type="button"
+              className="demo-slot"
+              onClick={() => setPosted(true)}
+              disabled={posted}
+              aria-label={
+                posted ? '오늘의 사진을 올렸습니다' : '오늘의 사진 올리기'
+              }
+            >
+              {posted ? (
+                <span className="demo-photo" />
+              ) : (
+                <span className="demo-plus">+</span>
+              )}
+            </button>
+            <p className="demo-status" aria-live="polite">
+              {posted ? '내일 다시 만나요 🔒' : '아직 오늘의 한 장이 비어 있어요'}
+            </p>
+          </div>
+
+          {posted && (
+            <button
+              type="button"
+              className="demo-reset"
+              onClick={() => setPosted(false)}
+            >
+              다시 해보기
+            </button>
+          )}
+        </section>
       </main>
     </Layout>
   )

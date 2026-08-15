@@ -1,13 +1,21 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import Layout from '../Layout'
 
 export default function Home() {
-  const [posted, setPosted] = useState(false)
-  const today = new Date().toLocaleDateString('ko-KR', {
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  })
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          entry.target.classList.add('is-visible')
+          io.unobserve(entry.target) // 한 번 나타나면 다시 감추지 않습니다
+        }
+      },
+      { threshold: 0.15 },
+    )
+    document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el))
+    return () => io.disconnect()
+  }, [])
 
   return (
     <Layout title="모모고 — 오늘 한 장, 우리끼리">
@@ -31,7 +39,7 @@ export default function Home() {
         </section>
 
         <section className="features wrap">
-          <article className="card">
+          <article className="card" data-reveal>
             <span className="dot" style={{ background: 'var(--primary-500)' }} />
             <h3>하루 한 장</h3>
             <p>
@@ -39,7 +47,7 @@ export default function Home() {
               오늘 가장 남기고 싶은 순간을 고르게 됩니다.
             </p>
           </article>
-          <article className="card">
+          <article className="card" data-reveal>
             <span className="dot" style={{ background: 'var(--point-1)' }} />
             <h3>초대한 사람만</h3>
             <p>
@@ -47,7 +55,7 @@ export default function Home() {
               없이 아는 사람들끼리만 봅니다.
             </p>
           </article>
-          <article className="card">
+          <article className="card" data-reveal>
             <span className="dot" style={{ background: 'var(--point-2)' }} />
             <h3>가볍게 반응</h3>
             <p>
@@ -55,45 +63,6 @@ export default function Home() {
               확인합니다.
             </p>
           </article>
-        </section>
-
-        <section className="demo wrap">
-          <h2>직접 한 장 올려보세요</h2>
-          <p className="demo-sub">
-            올리고 나면 오늘은 끝입니다. 그래서 더 신중해집니다.
-          </p>
-
-          <div className="demo-card">
-            <span className="demo-date">{today}</span>
-            <button
-              type="button"
-              className="demo-slot"
-              onClick={() => setPosted(true)}
-              disabled={posted}
-              aria-label={
-                posted ? '오늘의 사진을 올렸습니다' : '오늘의 사진 올리기'
-              }
-            >
-              {posted ? (
-                <span className="demo-photo" />
-              ) : (
-                <span className="demo-plus">+</span>
-              )}
-            </button>
-            <p className="demo-status" aria-live="polite">
-              {posted ? '내일 다시 만나요 🔒' : '아직 오늘의 한 장이 비어 있어요'}
-            </p>
-          </div>
-
-          {posted && (
-            <button
-              type="button"
-              className="demo-reset"
-              onClick={() => setPosted(false)}
-            >
-              다시 해보기
-            </button>
-          )}
         </section>
       </main>
     </Layout>

@@ -20,55 +20,57 @@ export default function Privacy() {
 
         <h2>제1조 (수집하는 개인정보 항목)</h2>
         <p>서비스는 아래 항목만을 수집·저장합니다.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>구분</th>
-              <th>항목</th>
-              <th>수집 시점</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>계정</td>
-              <td>
-                소셜 로그인 제공자 구분(카카오·네이버·Apple·게스트), 제공자가
-                발급한 회원 식별자
-              </td>
-              <td>회원가입 시</td>
-            </tr>
-            <tr>
-              <td>프로필</td>
-              <td>닉네임(6자 이내)</td>
-              <td>회원가입 및 프로필 수정 시</td>
-            </tr>
-            <tr>
-              <td>인증</td>
-              <td>로그인 유지를 위한 갱신 토큰</td>
-              <td>로그인 시</td>
-            </tr>
-            <tr>
-              <td>게시물</td>
-              <td>이용자가 등록한 사진, 등록 일시</td>
-              <td>사진 등록 시</td>
-            </tr>
-            <tr>
-              <td>활동</td>
-              <td>그룹 참여 정보, 사진에 남긴 반응</td>
-              <td>서비스 이용 중</td>
-            </tr>
-            <tr>
-              <td>신고</td>
-              <td>신고 대상 게시물 정보, 신고 사유, 신고자 식별자</td>
-              <td>신고 기능 이용 시</td>
-            </tr>
-            <tr>
-              <td>자동 수집</td>
-              <td>앱 버전, 이용 플랫폼(iOS·Android), 서비스 이용 기록</td>
-              <td>서비스 이용 중</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>구분</th>
+                <th>항목</th>
+                <th>수집 시점</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>계정</td>
+                <td>
+                  소셜 로그인 제공자 구분(카카오·네이버·Apple·게스트), 제공자가
+                  발급한 회원 식별자
+                </td>
+                <td>회원가입 시</td>
+              </tr>
+              <tr>
+                <td>프로필</td>
+                <td>닉네임(6자 이내)</td>
+                <td>회원가입 및 프로필 수정 시</td>
+              </tr>
+              <tr>
+                <td>인증</td>
+                <td>로그인 유지를 위한 갱신 토큰</td>
+                <td>로그인 시</td>
+              </tr>
+              <tr>
+                <td>게시물</td>
+                <td>이용자가 등록한 사진, 등록 일시</td>
+                <td>사진 등록 시</td>
+              </tr>
+              <tr>
+                <td>활동</td>
+                <td>그룹 참여 정보, 사진에 남긴 반응</td>
+                <td>서비스 이용 중</td>
+              </tr>
+              <tr>
+                <td>신고</td>
+                <td>신고 대상 게시물 정보, 신고 사유, 신고자 식별자</td>
+                <td>신고 기능 이용 시</td>
+              </tr>
+              <tr>
+                <td>자동 수집</td>
+                <td>앱 버전, 이용 플랫폼(iOS·Android), 서비스 이용 기록</td>
+                <td>서비스 이용 중</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p>
           회사는 이름, 생년월일, 성별, 전화번호, 주소를 수집하지 않습니다. 소셜
           로그인 제공자로부터도 회원 식별에 필요한 최소한의 정보만
@@ -93,37 +95,39 @@ export default function Privacy() {
           회사는 원칙적으로 회원 탈퇴 시 개인정보를 지체 없이 파기합니다. 다만
           아래의 경우 해당 기간 동안 보관합니다.
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>항목</th>
-              <th>보유 기간</th>
-              <th>근거</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>계정 및 프로필 정보</td>
-              <td>회원 탈퇴 시까지</td>
-              <td>서비스 제공</td>
-            </tr>
-            <tr>
-              <td>등록한 사진</td>
-              <td>이용자가 삭제하거나 탈퇴할 때까지</td>
-              <td>서비스 제공</td>
-            </tr>
-            <tr>
-              <td>신고 처리 기록</td>
-              <td>1년</td>
-              <td>분쟁 대응 및 재발 방지</td>
-            </tr>
-            <tr>
-              <td>서비스 이용 기록</td>
-              <td>3개월</td>
-              <td>통신비밀보호법</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>항목</th>
+                <th>보유 기간</th>
+                <th>근거</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>계정 및 프로필 정보</td>
+                <td>회원 탈퇴 시까지</td>
+                <td>서비스 제공</td>
+              </tr>
+              <tr>
+                <td>등록한 사진</td>
+                <td>이용자가 삭제하거나 탈퇴할 때까지</td>
+                <td>서비스 제공</td>
+              </tr>
+              <tr>
+                <td>신고 처리 기록</td>
+                <td>1년</td>
+                <td>분쟁 대응 및 재발 방지</td>
+              </tr>
+              <tr>
+                <td>서비스 이용 기록</td>
+                <td>3개월</td>
+                <td>통신비밀보호법</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <p>
           이용자가 탈퇴하면 본인이 등록한 사진은 모두 삭제됩니다. 다만 같은
           그룹의 다른 이용자가 등록한 게시물은 그대로 유지됩니다.
@@ -166,27 +170,29 @@ export default function Privacy() {
           이전을 거부할 수 있으나, 이 경우 사진 등록 및 신고 기능을 이용할 수
           없습니다.
         </p>
-        <table>
-          <thead>
-            <tr>
-              <th>이전받는 자</th>
-              <th>이전 항목</th>
-              <th>이전 국가·시점·방법</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Cloudflare, Inc.</td>
-              <td>이용자가 등록한 사진</td>
-              <td>아시아·태평양 지역 / 사진 등록 시 / 네트워크를 통한 전송</td>
-            </tr>
-            <tr>
-              <td>Discord Inc.</td>
-              <td>신고 사유, 신고 대상 게시물 및 신고자 식별 정보</td>
-              <td>미국 / 신고 접수 시 / 네트워크를 통한 전송</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>이전받는 자</th>
+                <th>이전 항목</th>
+                <th>이전 국가·시점·방법</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cloudflare, Inc.</td>
+                <td>이용자가 등록한 사진</td>
+                <td>아시아·태평양 지역 / 사진 등록 시 / 네트워크를 통한 전송</td>
+              </tr>
+              <tr>
+                <td>Discord Inc.</td>
+                <td>신고 사유, 신고 대상 게시물 및 신고자 식별 정보</td>
+                <td>미국 / 신고 접수 시 / 네트워크를 통한 전송</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <h2>제7조 (이용자의 권리)</h2>
         <p>

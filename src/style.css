@@ -37,6 +37,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* iOS Safari가 가로 모드에서 본문을 임의로 키우는 것을 막습니다 */
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -237,6 +239,8 @@ a {
 .doc {
   padding: 56px 0 96px;
   max-width: 760px;
+  /* 긴 이메일·URL이 좁은 화면을 밀어내지 않도록 */
+  overflow-wrap: break-word;
 }
 
 .doc h1 {
@@ -299,6 +303,21 @@ a {
   font-weight: 600;
 }
 
+/*
+ * 3열 표는 좁은 화면에서 열 하나당 글자 폭이 너무 좁아져 세로로 찢어집니다.
+ * 최소 폭을 주고 가로 스크롤로 넘깁니다. 2열 표는 그냥 들어가므로 감싸지 않습니다.
+ */
+.table-scroll {
+  margin: 16px 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll table {
+  margin: 0;
+  min-width: 440px;
+}
+
 .notice {
   margin: 24px 0;
   padding: 16px 18px;
@@ -343,5 +362,24 @@ a {
   }
   h1 {
     font-size: 26px;
+  }
+
+  /* 약관·방침 문서 */
+  .site-header .wrap {
+    height: 56px;
+  }
+  .doc {
+    padding: 36px 0 64px;
+  }
+  .doc .meta {
+    margin-bottom: 28px;
+  }
+  .doc h2 {
+    margin: 32px 0 12px;
+    font-size: 18px;
+  }
+  .doc th,
+  .doc td {
+    padding: 10px 11px;
   }
 }

@@ -235,6 +235,52 @@ a {
   font-size: 15px;
 }
 
+/* 앱 스크린샷 */
+.shots {
+  padding: 0 0 80px;
+}
+
+.shots h2 {
+  margin-bottom: 28px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.shots-track {
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0 20px 4px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  /* safe: 항목이 넘칠 때 첫 장이 잘려 접근 불가해지는 것을 막습니다 */
+  justify-content: safe center;
+}
+
+.shots-track li {
+  flex: 0 0 220px;
+  scroll-snap-align: center;
+  text-align: center;
+}
+
+.shots-track img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(23, 23, 25, 0.14);
+}
+
+.shots-track span {
+  display: block;
+  margin-top: 14px;
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
 /* 문서 페이지 */
 .doc {
   padding: 56px 0 96px;
@@ -362,6 +408,10 @@ a {
   }
   h1 {
     font-size: 26px;
+  }
+
+  .shots-track li {
+    flex: 0 0 168px;
   }
 
   /* 약관·방침 문서 */

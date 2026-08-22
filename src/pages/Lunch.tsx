@@ -15,7 +15,7 @@ type Menu = { name: string; photo: string }
  * Unsplash 검색 결과에는 다른 음식이 섞여 들어옵니다.
  */
 const MENUS: Menu[] = [
-  { name: '김치찌개', photo: 'photo-1743419612786-19d116bb8c40' },
+  { name: '김치찌개', photo: 'photo-1760228865341-675704c22a5b' },
   { name: '비빔밥', photo: 'photo-1718777791239-c473e9ce7376' },
   { name: '김밥', photo: 'photo-1656426548548-f006f0b38bcd' },
   { name: '떡볶이', photo: 'photo-1747228469541-f0e7f56e7ec7' },

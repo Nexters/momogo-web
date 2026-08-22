@@ -28,10 +28,15 @@ export default function Home() {
             남기고, 서로의 하루에 반응해 보세요.
           </p>
           <div className="stores">
-            {/* TODO: 스토어 출시 후 href 연결하고 aria-disabled 제거 */}
-            <a className="btn" href="#" aria-disabled="true">
-              App Store · 준비 중
+            <a
+              className="btn"
+              href="https://apps.apple.com/kr/app/%EB%AA%A8%EB%AA%A8%EA%B3%A0/id6801859996"
+              target="_blank"
+              rel="noreferrer"
+            >
+              App Store
             </a>
+            {/* TODO: Google Play 출시 후 href 연결하고 aria-disabled 제거 */}
             <a className="btn ghost" href="#" aria-disabled="true">
               Google Play · 준비 중
             </a>

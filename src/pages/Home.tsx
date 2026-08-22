@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import Layout from '../Layout'
 
 export default function Home() {
@@ -42,9 +41,6 @@ export default function Home() {
               Google Play · 준비 중
             </a>
           </div>
-          <p className="hero-demo">
-            <Link to="/lunch">점심 룰렛 해보기 →</Link>
-          </p>
         </section>
 
         <section className="features wrap">

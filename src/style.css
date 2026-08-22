@@ -89,6 +89,11 @@ button:focus-visible {
   border-radius: var(--radius-sm);
 }
 
+/*
+ * 좌우 20px는 여기 한 곳에서만 정합니다. `.wrap`을 같이 쓰는 섹션(.hero .features .qr
+ * .roulette)이 padding 단축 속성을 쓰면 이 좌우 값이 지워지므로, 그쪽은 padding-top /
+ * padding-bottom만 지정합니다.
+ */
 .wrap {
   max-width: var(--max);
   margin: 0 auto;
@@ -151,7 +156,8 @@ button:focus-visible {
 
 /* 히어로 */
 .hero {
-  padding: 72px 0 56px;
+  padding-top: 72px;
+  padding-bottom: 56px;
   text-align: center;
 }
 
@@ -180,21 +186,6 @@ button:focus-visible {
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 32px;
-}
-
-/* 부스에서 QR로 들어온 사람이 시연을 찾아갈 수 있게 두는 작은 입구 */
-.hero-demo {
-  margin-top: 20px;
-  font-size: 15px;
-}
-
-.hero-demo a {
-  color: var(--text-sub);
-  text-decoration: none;
-}
-
-.hero-demo a:hover {
-  color: var(--text);
 }
 
 .btn {
@@ -232,7 +223,8 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  padding: 40px 0 80px;
+  padding-top: 40px;
+  padding-bottom: 80px;
 }
 
 .card {
@@ -389,7 +381,8 @@ button:focus-visible {
 
 /* 부스용 QR 페이지 */
 .qr {
-  padding: 72px 0 96px;
+  padding-top: 72px;
+  padding-bottom: 96px;
   text-align: center;
 }
 
@@ -430,44 +423,74 @@ button:focus-visible {
 
 /* 부스 시연용 점심 룰렛 */
 .roulette {
-  padding: 72px 0 96px;
+  padding-top: 72px;
+  padding-bottom: 96px;
   text-align: center;
 }
 
 .roulette-lead {
   max-width: 480px;
-  margin: 0 auto;
+  margin: 24px auto 0;
   color: var(--text-sub);
   font-size: 17px;
 }
 
-/* 룰렛이 뽑은 메뉴 이름. 돌아가는 동안 이 자리 글자만 빠르게 바뀝니다 */
-.roulette-slot {
-  margin: 24px 0 0;
-  font-size: 40px;
-  font-weight: 700;
+/*
+ * 룰렛 판. 후보를 다 늘어놓고, 돌아가는 동안 불이 칸을 옮겨 다닙니다 —
+ * 이 이동이 룰렛의 애니메이션 역할을 합니다.
+ */
+.roulette-board {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
+.roulette-chip {
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  background: var(--bg-soft);
+  color: var(--text-sub);
+  font-size: 14px;
+  font-weight: 500;
+  /* 90ms마다 옮겨 가는 불보다 살짝 길게 — 지나간 칸에 잔광이 남습니다 */
+  transition:
+    background 0.12s ease,
+    color 0.12s ease;
+}
+
+.roulette-chip.is-lit {
+  background: var(--primary-500);
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* 뽑힌 메뉴 이름. 히어로 h1과 같은 크기를 씁니다 */
+.roulette-slot {
+  margin: 32px 0 0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* 모니터를 보고 찍는 화면이라 사진을 크게 — 약관 문서와 같은 760px입니다 */
 .roulette-photo {
-  width: min(480px, 100%);
-  margin: 32px auto 0;
+  width: min(760px, 100%);
+  margin: 24px auto 0;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--bg-soft);
   border-radius: var(--radius-lg);
 }
 
-.roulette-photo img,
-.roulette-photo video {
+.roulette-photo img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* 노트북 전면 카메라는 거울처럼 보여주는 편이 자연스럽습니다 */
-.roulette-photo video.is-mirrored {
-  transform: scaleX(-1);
 }
 
 .roulette-actions {
@@ -478,23 +501,13 @@ button:focus-visible {
   margin-top: 24px;
 }
 
-.roulette-error {
-  margin-top: 16px;
-  color: var(--text-sub);
-  font-size: 15px;
+/* 누르는 느낌만 — 부스에서 여러 번 눌리는 버튼입니다 */
+.roulette-actions .btn {
+  transition: transform 0.12s ease;
 }
 
-.roulette-file {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-/* 파일 입력은 라벨로 감싸 눌리게 하고, 기본 생김새는 숨깁니다 */
-.roulette-file input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
+.roulette-actions .btn:active {
+  transform: scale(0.97);
 }
 
 .roulette-note {
@@ -503,19 +516,45 @@ button:focus-visible {
   font-size: 14px;
 }
 
-.roulette-link {
-  border: 0;
-  padding: 0;
-  background: none;
-  color: var(--text);
-  font: inherit;
-  text-decoration: underline;
-  cursor: pointer;
+/* 결과가 나올 때의 등장. 값은 [data-reveal]과 같은 것을 씁니다 */
+@keyframes roulette-pop {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-/* 촬영한 프레임을 옮겨 담기만 하는 자리 — 화면에는 보이지 않습니다 */
-.roulette-canvas {
-  display: none;
+.roulette-slot.is-result {
+  animation: roulette-pop 0.35s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.roulette-photo {
+  /* 이름이 먼저, 사진이 뒤따라 — 카드 순차 지연과 같은 80ms입니다 */
+  animation: roulette-pop 0.35s cubic-bezier(0.2, 0.8, 0.3, 1) 80ms both;
+}
+
+/*
+ * 위쪽 모션 구역의 prefers-reduced-motion 블록은 이 규칙들보다 앞에 있어서 덮을 수 없습니다
+ * (특이성이 같으면 나중에 온 것이 이깁니다). 그래서 룰렛 몫은 여기에 둡니다.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .roulette-chip {
+    transition: none;
+  }
+  .roulette-slot.is-result,
+  .roulette-photo {
+    animation: none;
+  }
+  .roulette-actions .btn {
+    transition: none;
+  }
+  .roulette-actions .btn:active {
+    transform: none;
+  }
 }
 
 /* 푸터 */
@@ -546,7 +585,8 @@ button:focus-visible {
     grid-template-columns: 1fr;
   }
   .hero {
-    padding: 48px 0 40px;
+    padding-top: 48px;
+    padding-bottom: 40px;
   }
   .hero h1 {
     font-size: 30px;
@@ -558,6 +598,10 @@ button:focus-visible {
   /* 약관·방침 문서 */
   .site-header .wrap {
     height: 56px;
+  }
+  /* 룰렛은 부스 모니터용 — 좁은 화면에서는 nav가 두 줄로 밀리므로 내립니다 */
+  .nav-lunch {
+    display: none;
   }
   .doc {
     padding: 44px 0 72px;
@@ -576,7 +620,8 @@ button:focus-visible {
 
   /* 부스용 QR */
   .qr {
-    padding: 48px 0 72px;
+    padding-top: 48px;
+    padding-bottom: 72px;
   }
   .qr-frame {
     margin: 32px auto 18px;
@@ -585,12 +630,19 @@ button:focus-visible {
 
   /* 점심 룰렛 */
   .roulette {
-    padding: 48px 0 72px;
+    padding-top: 48px;
+    padding-bottom: 72px;
   }
   .roulette-slot {
     font-size: 30px;
-  }
-  .roulette-photo {
     margin-top: 24px;
+  }
+  .roulette-board {
+    gap: 6px;
+    margin-top: 22px;
+  }
+  .roulette-chip {
+    padding: 8px 12px;
+    font-size: 13px;
   }
 }

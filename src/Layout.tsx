@@ -22,6 +22,10 @@ export default function Layout({ title, children }: Props) {
           </Link>
           <nav className="nav">
             {/* NavLink가 현재 경로에 aria-current="page"를 붙여줍니다 */}
+            {/* 부스 모니터용 시연이라 좁은 화면에서는 감춥니다 (style.css의 720px 블록) */}
+            <NavLink className="nav-lunch" to="/lunch">
+              점심 룰렛
+            </NavLink>
             <NavLink to="/terms">이용약관</NavLink>
             <NavLink to="/privacy">개인정보처리방침</NavLink>
           </nav>

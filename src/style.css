@@ -372,6 +372,47 @@ button:focus-visible {
   min-width: 440px;
 }
 
+/* 부스용 QR 페이지 */
+.qr {
+  padding: 72px 0 96px;
+  text-align: center;
+}
+
+.qr h1 {
+  margin-bottom: 14px;
+}
+
+.qr-lead {
+  max-width: 480px;
+  margin: 0 auto;
+  color: var(--text-sub);
+  font-size: 17px;
+}
+
+/*
+ * QR은 흰 바닥에 놓여야 스캔이 안정적입니다. 프레임 안쪽 여백이 곧 quiet zone
+ * 역할을 하므로 배경을 --bg(흰색)로 고정합니다.
+ */
+.qr-frame {
+  width: min(360px, 100%);
+  margin: 40px auto 20px;
+  padding: 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.qr-frame svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.qr-url {
+  color: var(--text-sub);
+  font-size: 15px;
+}
+
 /* 푸터 */
 .site-footer {
   padding: 32px 0 48px;
@@ -426,5 +467,14 @@ button:focus-visible {
   .doc h2 {
     margin: 40px 0 14px;
     font-size: 19px;
+  }
+
+  /* 부스용 QR */
+  .qr {
+    padding: 48px 0 72px;
+  }
+  .qr-frame {
+    margin: 32px auto 18px;
+    padding: 20px;
   }
 }

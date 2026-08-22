@@ -421,6 +421,81 @@ button:focus-visible {
   font-size: 15px;
 }
 
+/* 부스용 그룹 참여 코드판 */
+.codes {
+  padding-top: 72px;
+  padding-bottom: 96px;
+  text-align: center;
+}
+
+.codes-lead {
+  max-width: 480px;
+  margin: 14px auto 0;
+  color: var(--text-sub);
+  font-size: 17px;
+}
+
+.codes-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.code-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+}
+
+.code-team {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/*
+ * 코드는 모니터에서 한 글자씩 읽어 옮겨 적는 값입니다. 자간 -0.02em 규칙의 유일한
+ * 예외로 양수 자간을 줘서 글자가 붙어 보이지 않게 합니다.
+ */
+.code-value {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.code-value:hover {
+  background: var(--bg);
+}
+
+.code-value.is-copied {
+  background: var(--primary-500);
+}
+
+.codes-note {
+  margin-top: 24px;
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .code-value {
+    transition: none;
+  }
+}
+
 /* 부스 시연용 점심 룰렛 */
 .roulette {
   padding-top: 72px;
@@ -600,7 +675,7 @@ button:focus-visible {
     height: 56px;
   }
   /* 룰렛은 부스 모니터용 — 좁은 화면에서는 nav가 두 줄로 밀리므로 내립니다 */
-  .nav-lunch {
+  .nav-booth {
     display: none;
   }
   .doc {
@@ -626,6 +701,19 @@ button:focus-visible {
   .qr-frame {
     margin: 32px auto 18px;
     padding: 20px;
+  }
+
+  /* 참여 코드판 */
+  .codes {
+    padding-top: 48px;
+    padding-bottom: 72px;
+  }
+  .codes-list {
+    grid-template-columns: 1fr;
+    margin-top: 32px;
+  }
+  .code-value {
+    font-size: 22px;
   }
 
   /* 점심 룰렛 */

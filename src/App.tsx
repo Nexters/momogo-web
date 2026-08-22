@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import Codes from './pages/Codes'
 import Home from './pages/Home'
 import Lunch from './pages/Lunch'
 import Privacy from './pages/Privacy'
@@ -13,6 +14,7 @@ export default function App() {
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/qr" element={<Qr />} />
       <Route path="/lunch" element={<Lunch />} />
+      <Route path="/codes" element={<Codes />} />
       {/* 알 수 없는 경로는 홈으로 — 빈 화면 대신 */}
       <Route path="*" element={<Home />} />
     </Routes>

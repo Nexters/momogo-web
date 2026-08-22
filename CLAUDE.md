@@ -1,7 +1,8 @@
 # 모모고 웹
 
 모모고 앱 소개 사이트. Vite + React 19 + react-router-dom, 페이지 5면(홈 / 이용약관 /
-개인정보처리방침 / 부스용 QR `/qr` / 부스 시연용 점심 룰렛 `/lunch`).
+개인정보처리방침 / 부스용 QR `/qr` / 부스용 참여 코드판 `/codes` / 부스 시연용 점심 룰렛
+`/lunch`).
 Vercel 배포(`vercel.json`의 rewrite로 SPA 라우팅 처리).
 
 ```bash
@@ -53,6 +54,8 @@ npm run preview  # 빌드 결과 확인
 
 Wanted Sans Variable(jsdelivr CDN `@import`) → Pretendard → Apple SD Gothic Neo.
 **자간 `-0.02em`은 제목·본문 모두 고정.** 제목 700 / 본문 500.
+유일한 예외는 `.code-value`(그룹 참여 코드)입니다 — 모니터에서 한 글자씩 읽어 옮겨 적는
+값이라 `+0.06em`으로 벌립니다. 다른 곳에 양수 자간을 쓰지 않습니다.
 
 | 역할 | 크기 | 행간 |
 |---|---|---|
@@ -80,8 +83,13 @@ Wanted Sans Variable(jsdelivr CDN `@import`) → Pretendard → Apple SD Gothic 
 
 `.wrap`(폭·여백) · `.site-header` · `.nav` · `.btn`(+`.ghost`) · `.card`(+`.dot`) ·
 `.doc`(약관 문서 타이포·표) · `.qr`(+`.qr-lead` `.qr-frame` `.qr-url`) ·
+`.codes`(+`-lead` `-list` `-note` / `.code-card` `.code-team` `.code-value`) ·
 `.roulette`(+`-lead` `-board` `-chip` `-slot` `-photo` `-actions` `-note`) · `.site-footer`.
-이 아홉 개로 사이트 전체를 만듭니다.
+이 열 개로 사이트 전체를 만듭니다.
+
+`.codes`는 부스용 코드판입니다. 카드는 `.card`를 그대로 재사용하고, 코드에만
+`.code-value`를 얹습니다. 복사되면 `--primary-500` 배경이 잠깐 켜집니다 — 여백이 늘거나
+줄지 않도록 padding은 평소에도 잡아 둡니다.
 
 `.roulette`은 부스 시연용입니다. `.roulette-board`는 후보를 늘어놓은 판이고, 돌아가는 동안
 `.roulette-chip.is-lit`이 칸을 옮겨 다닙니다 — 이 이동이 룰렛의 애니메이션입니다. 결과
@@ -104,7 +112,7 @@ quiet zone 역할을 합니다. QR 자체의 색은 SVG `fill`이 CSS 변수를 
 - **`@media (prefers-reduced-motion: reduce)` 블록에 새 모션도 반드시 추가합니다.** 단,
   그 블록은 모션 구역에 있어서 뒤에 오는 규칙(`.roulette` 등)을 덮지 못합니다 — 특이성이
   같으면 나중에 온 것이 이깁니다. 뒤쪽 구역의 모션은 그 구역 끝에 같은 미디어 블록을
-  하나 더 두어 끕니다(`.roulette`이 그렇게 하고 있습니다).
+  하나 더 두어 끕니다(`.codes`와 `.roulette`이 그렇게 하고 있습니다).
 - 룰렛(`/lunch`)이 메뉴 이름을 빠르게 바꾸는 것도 모션입니다. 이건 CSS가 아니라 상태
   변경이라 위 블록으로 막을 수 없어, `Lunch.tsx`가 `matchMedia`로 직접 확인해 건너뜁니다.
   JS로 움직이는 것을 새로 만들면 같은 검사를 넣으세요.
@@ -121,10 +129,10 @@ quiet zone 역할을 합니다. QR 자체의 색은 SVG `fill`이 CSS 변수를 
 ## 스타일시트 구조
 
 `src/style.css`는 **토큰 → 리셋·요소 → 레이아웃(`.wrap`) → 헤더 → 히어로·버튼 →
-기능 카드 → 모션 → 문서(`.doc`) → QR(`.qr`) → 룰렛(`.roulette`) → 푸터 →
+기능 카드 → 모션 → 문서(`.doc`) → QR(`.qr`) → 코드판(`.codes`) → 룰렛(`.roulette`) → 푸터 →
 `@media (max-width: 720px)`** 순서입니다.
 
-`.wrap`을 같이 쓰는 섹션(`.hero` `.features` `.qr` `.roulette`)은 **`padding` 단축 속성을
+`.wrap`을 같이 쓰는 섹션(`.hero` `.features` `.qr` `.codes` `.roulette`)은 **`padding` 단축 속성을
 쓰지 않고 `padding-top`/`padding-bottom`만 지정합니다.** 단축 속성을 쓰면 `.wrap`의 좌우
 20px가 지워져 좁은 화면에서 본문이 화면 끝에 붙습니다. 이 순서를 유지합니다
 (선택자 특이성이 낮아 순서가 곧 우선순위입니다).

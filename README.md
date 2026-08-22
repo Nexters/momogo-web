@@ -9,7 +9,7 @@ src/main.tsx          진입점
 src/App.tsx           라우트 정의
 src/Layout.tsx        헤더·푸터·document.title 공유
 src/style.css         디자인 토큰 + 스타일
-src/pages/            Home · Terms · Privacy · Qr · Lunch
+src/pages/            Home · Terms · Privacy · Qr · Codes · Lunch
 public/assets/        Figma에서 내려받은 로고·아이콘
 ```
 
@@ -19,6 +19,7 @@ public/assets/        Figma에서 내려받은 로고·아이콘
 | `/terms` | 이용약관 |
 | `/privacy` | 개인정보처리방침 |
 | `/qr` | 부스용 QR (홈 주소를 QR로 표시) |
+| `/codes` | 팀별 그룹 참여 코드 (부스용) |
 | `/lunch` | 점심 룰렛 (부스 시연용) |
 
 ## 로컬 확인
@@ -47,6 +48,18 @@ QR에 담기는 주소는 **그 페이지를 열어 준 도메인**(`window.loca
 프로덕션에서 열면 프로덕션 주소, 로컬에서 열면 로컬 주소가 담기므로 개발 중 휴대폰
 테스트도 그대로 됩니다. 정식 도메인이 정해지면 `src/pages/Qr.tsx`의 `CANONICAL`에
 적어 고정하세요.
+
+## 그룹 참여 코드 (`/codes`)
+
+부스에서 띄워 두는 코드판입니다. 방문자가 모니터에서 코드를 보고 앱에 입력하는 것이 기본
+흐름이라 코드를 크게 쓰고 자간을 벌렸습니다. 휴대폰으로 이 페이지를 열었을 때를 위해 코드를
+누르면 복사도 됩니다(`navigator.clipboard`는 HTTPS·localhost에서만 동작하고, 실패하면
+직접 입력하라는 안내로 바뀝니다).
+
+팀·코드는 `src/pages/Codes.tsx`의 `TEAMS` 배열에 있습니다. 행사마다 여기만 고치면 됩니다.
+
+들어가는 곳은 두 군데입니다. 헤더 `참여 코드`(720px 이하에서는 숨김)와 **푸터 `참여 코드`**.
+헤더에 항목이 4개가 되면 좁은 화면에서 두 줄로 밀리므로, 휴대폰에서는 푸터로 들어갑니다.
 
 ## 점심 룰렛 (`/lunch`)
 

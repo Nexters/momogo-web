@@ -182,6 +182,21 @@ button:focus-visible {
   margin-top: 32px;
 }
 
+/* 부스에서 QR로 들어온 사람이 시연을 찾아갈 수 있게 두는 작은 입구 */
+.hero-demo {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.hero-demo a {
+  color: var(--text-sub);
+  text-decoration: none;
+}
+
+.hero-demo a:hover {
+  color: var(--text);
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -413,6 +428,96 @@ button:focus-visible {
   font-size: 15px;
 }
 
+/* 부스 시연용 점심 룰렛 */
+.roulette {
+  padding: 72px 0 96px;
+  text-align: center;
+}
+
+.roulette-lead {
+  max-width: 480px;
+  margin: 0 auto;
+  color: var(--text-sub);
+  font-size: 17px;
+}
+
+/* 룰렛이 뽑은 메뉴 이름. 돌아가는 동안 이 자리 글자만 빠르게 바뀝니다 */
+.roulette-slot {
+  margin: 24px 0 0;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.roulette-photo {
+  width: min(480px, 100%);
+  margin: 32px auto 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bg-soft);
+  border-radius: var(--radius-lg);
+}
+
+.roulette-photo img,
+.roulette-photo video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 노트북 전면 카메라는 거울처럼 보여주는 편이 자연스럽습니다 */
+.roulette-photo video.is-mirrored {
+  transform: scaleX(-1);
+}
+
+.roulette-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.roulette-error {
+  margin-top: 16px;
+  color: var(--text-sub);
+  font-size: 15px;
+}
+
+.roulette-file {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 파일 입력은 라벨로 감싸 눌리게 하고, 기본 생김새는 숨깁니다 */
+.roulette-file input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.roulette-note {
+  margin-top: 24px;
+  color: var(--text-sub);
+  font-size: 14px;
+}
+
+.roulette-link {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 촬영한 프레임을 옮겨 담기만 하는 자리 — 화면에는 보이지 않습니다 */
+.roulette-canvas {
+  display: none;
+}
+
 /* 푸터 */
 .site-footer {
   padding: 32px 0 48px;
@@ -476,5 +581,16 @@ button:focus-visible {
   .qr-frame {
     margin: 32px auto 18px;
     padding: 20px;
+  }
+
+  /* 점심 룰렛 */
+  .roulette {
+    padding: 48px 0 72px;
+  }
+  .roulette-slot {
+    font-size: 30px;
+  }
+  .roulette-photo {
+    margin-top: 24px;
   }
 }

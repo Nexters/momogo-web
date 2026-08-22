@@ -1,7 +1,7 @@
 # 모모고 웹
 
-모모고 앱 소개 사이트. Vite + React 19 + react-router-dom, 페이지 4면(홈 / 이용약관 /
-개인정보처리방침 / 부스용 QR `/qr`).
+모모고 앱 소개 사이트. Vite + React 19 + react-router-dom, 페이지 5면(홈 / 이용약관 /
+개인정보처리방침 / 부스용 QR `/qr` / 부스 시연용 점심 룰렛 `/lunch`).
 Vercel 배포(`vercel.json`의 rewrite로 SPA 라우팅 처리).
 
 ```bash
@@ -78,8 +78,10 @@ Wanted Sans Variable(jsdelivr CDN `@import`) → Pretendard → Apple SD Gothic 
 ## 컴포넌트
 
 `.wrap`(폭·여백) · `.site-header` · `.nav` · `.btn`(+`.ghost`) · `.card`(+`.dot`) ·
-`.doc`(약관 문서 타이포·표) · `.qr`(+`.qr-lead` `.qr-frame` `.qr-url`) · `.site-footer`.
-이 여덟 개로 사이트 전체를 만듭니다.
+`.doc`(약관 문서 타이포·표) · `.qr`(+`.qr-lead` `.qr-frame` `.qr-url`) ·
+`.roulette`(+`-lead` `-slot` `-photo` `-actions` `-note` `-error` `-file` `-link` `-canvas`) ·
+`.hero-demo`(히어로에서 룰렛으로 가는 작은 링크) · `.site-footer`.
+이 열 개로 사이트 전체를 만듭니다.
 
 `.qr`은 부스용 화면이라 등장 모션을 붙이지 않습니다 — 열자마자 스캔 가능해야 합니다.
 `.qr-frame`의 배경은 스캔 안정성 때문에 `--bg`(흰색) 고정이고, 안쪽 여백 24px이 QR의
@@ -95,6 +97,9 @@ quiet zone 역할을 합니다. QR 자체의 색은 SVG `fill`이 CSS 변수를 
 - 호버: `translateY(-4px)` + 그림자. 이때 `transition-delay: 0s`로 되돌려, 등장 지연이 호버까지
   늦추지 않게 합니다.
 - **`@media (prefers-reduced-motion: reduce)` 블록에 새 모션도 반드시 추가합니다.**
+- 룰렛(`/lunch`)이 메뉴 이름을 빠르게 바꾸는 것도 모션입니다. 이건 CSS가 아니라 상태
+  변경이라 위 블록으로 막을 수 없어, `Lunch.tsx`가 `matchMedia`로 직접 확인해 건너뜁니다.
+  JS로 움직이는 것을 새로 만들면 같은 검사를 넣으세요.
 
 ## 접근성·한글 기본값 (건드리지 말 것)
 
@@ -107,8 +112,9 @@ quiet zone 역할을 합니다. QR 자체의 색은 SVG `fill`이 CSS 변수를 
 
 ## 스타일시트 구조
 
-`src/style.css`는 **토큰 → 리셋·요소 → 레이아웃(`.wrap`) → 헤더 → 히어로·버튼 → 기능 카드 →
-모션 → 문서(`.doc`) → QR(`.qr`) → 푸터 → `@media (max-width: 720px)`** 순서입니다. 이 순서를 유지합니다
+`src/style.css`는 **토큰 → 리셋·요소 → 레이아웃(`.wrap`) → 헤더 → 히어로·`.hero-demo`·버튼 →
+기능 카드 → 모션 → 문서(`.doc`) → QR(`.qr`) → 룰렛(`.roulette`) → 푸터 →
+`@media (max-width: 720px)`** 순서입니다. 이 순서를 유지합니다
 (선택자 특이성이 낮아 순서가 곧 우선순위입니다).
 
 ## 아직 없는 것

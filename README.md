@@ -9,7 +9,7 @@ src/main.tsx          진입점
 src/App.tsx           라우트 정의
 src/Layout.tsx        헤더·푸터·document.title 공유
 src/style.css         디자인 토큰 + 스타일
-src/pages/            Home · Terms · Privacy · Qr
+src/pages/            Home · Terms · Privacy · Qr · Lunch
 public/assets/        Figma에서 내려받은 로고·아이콘
 ```
 
@@ -19,6 +19,7 @@ public/assets/        Figma에서 내려받은 로고·아이콘
 | `/terms` | 이용약관 |
 | `/privacy` | 개인정보처리방침 |
 | `/qr` | 부스용 QR (홈 주소를 QR로 표시) |
+| `/lunch` | 점심 룰렛 (부스 시연용) |
 
 ## 로컬 확인
 
@@ -46,6 +47,21 @@ QR에 담기는 주소는 **그 페이지를 열어 준 도메인**(`window.loca
 프로덕션에서 열면 프로덕션 주소, 로컬에서 열면 로컬 주소가 담기므로 개발 중 휴대폰
 테스트도 그대로 됩니다. 정식 도메인이 정해지면 `src/pages/Qr.tsx`의 `CANONICAL`에
 적어 고정하세요.
+
+## 점심 룰렛 (`/lunch`)
+
+부스 시연용입니다. `돌리기` → 메뉴 하나가 뽑히고 → 그 메뉴 사진이 뜨고 → `사진 찍기`로
+카메라를 열어 한 장 찍으면 '오늘 한 장'처럼 보여줍니다. 홈 히어로 아래 `점심 룰렛 해보기`
+링크로 들어갑니다 — QR로 홈에 들어온 방문자가 찾을 수 있게 둔 입구입니다.
+
+음식 사진은 **Unsplash CDN**(`images.unsplash.com`)에서 바로 받습니다. Unsplash 라이선스가
+핫링크를 허용합니다. `src/pages/Lunch.tsx`의 `MENUS`에 담긴 photo id는 전부 실제로 200을
+주는지, 사진이 메뉴 이름과 맞는지 확인한 것만 넣었습니다. **메뉴를 추가할 때도 같이
+확인하세요** — Unsplash 검색 결과에는 다른 음식이 섞여 들어옵니다.
+
+카메라는 `getUserMedia`를 씁니다. 권한이 거부되거나 지원되지 않으면 안내와 함께
+`input[type=file]` 폴백이 뜹니다. HTTPS(또는 localhost)에서만 열리므로 부스에서는
+프로덕션 주소로 여세요.
 
 ## 남은 작업
 
